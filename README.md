@@ -30,4 +30,4 @@ install.packages("pls")
 Rscript src/run.R
 ```
 
-Run from the repository root. This prints every number quoted in the report and writes the nine figure files it uses to `latex/figures/`, which is created on the first run and is not tracked.
+This prints every number quoted in the report and writes the nine figure files it uses to `latex/figures/`, which is created on the first run and is not tracked.
