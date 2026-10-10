@@ -19,7 +19,7 @@ pcr_fit <- function(d = returns()) {
   set.seed(CV_SEED)
   cv <- pls::pcr(y ~ X, scale = TRUE, validation = "CV")
 
-  list(pca = p, r2 = r2, models = models, cv = cv,
+  list(pca = p, r2 = r2, models = models, rmsep = pls::RMSEP(cv)$val["CV", 1, ],
        test_date = d$date[!d$train], actual = yt, pred = pred,
        error = yt - pred)
 }

@@ -13,7 +13,8 @@ figure <- function(name, draw, width = 6.5, height = 3, mfrow = c(1, 1)) {
 
 # Lower triangle of a correlation matrix, diagonal excluded.
 corr_triangle <- function(x, main) {
-  C <- cor(x); n <- ncol(C)
+  C <- cor(x)
+  n <- ncol(C)
   z <- t(C[n:2, 1:(n - 1)])
   z[col(z) > n - row(z)] <- NA
   image(1:(n - 1), 1:(n - 1), z, zlim = c(-1, 1), col = CORR_COLORS,
@@ -21,6 +22,7 @@ corr_triangle <- function(x, main) {
   axis(1, 1:(n - 1), colnames(C)[1:(n - 1)], las = 2, tick = FALSE)
   axis(2, 1:(n - 1), colnames(C)[n:2], las = 1, tick = FALSE)
   ok <- which(!is.na(z), arr.ind = TRUE)
+  # + 0 clears the sign of -0, which sprintf would print as -0.00
   text(ok[, 1], ok[, 2], sprintf("%.2f", round(z[ok], 2) + 0), cex = 0.5)
 }
 
@@ -64,8 +66,7 @@ loading_panels <- function(p) for (i in 1:N_PC) {
   abline(v = 0, lty = 2)
 }
 
-cv_panel <- function(cv) {
-  e <- RMSEP(cv)$val[1, 1, ]
+cv_panel <- function(e) {
   k <- seq_along(e) - 1
   plot(k, e, type = "b", pch = 19, log = "y", xaxt = "n",
        xlab = "Number of components", ylab = "RMSEP (log scale)")
@@ -104,7 +105,7 @@ write_figures <- function(mp, sp, f) {
   figure("variance_sector.png", function() { scree_panel(sp); pareto_panel(sp) }, mfrow = c(1, 2))
   figure("loadings_macro.png", function() loading_panels(mp), height = 3.2, mfrow = c(1, N_PC))
   figure("loadings_sector.png", function() loading_panels(sp), height = 3.2, mfrow = c(1, N_PC))
-  figure("cv.png", function() cv_panel(f$cv), width = 4.5)
+  figure("cv.png", function() cv_panel(f$rmsep), width = 4.5)
   figure("residuals.png", function() residual_panels(f$models), mfrow = c(1, 2))
   figure("errors.png", function() error_panels(f), mfrow = c(1, 2))
   figure("test_fit.png", function() test_fit_panels(f), height = 3.4, mfrow = c(1, 2))
