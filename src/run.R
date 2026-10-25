@@ -1,6 +1,6 @@
 # Single entry point. Run from the repository root: Rscript src/run.R
 suppressPackageStartupMessages(library(pls))
-for (script in c("config.R", "data.R", "pca.R", "pcr.R", "plots.R"))
+for (script in c("config.R", "pca.R", "plots.R"))
   source(file.path("src", script))
 
 pct <- function(x) round(100 * x, 2)

@@ -23,7 +23,7 @@ The report and slides are distributed as compiled PDFs. Their typesetting source
 
 ## Reproducing
 
-R 4.3.3 with the `pls` package.
+R 4.3.3 with `pls` 2.8-3.
 
 ```
 install.packages("pls")
