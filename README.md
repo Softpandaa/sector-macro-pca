@@ -1,10 +1,10 @@
 # Principal Components of US Sector Prices and Macroeconomic Data
 
-This study applies principal component analysis (PCA) to ten monthly US macroeconomic indicators and eleven Select Sector SPDR ETFs, and regresses the daily S&P 500 log return on the principal components of the sector returns from June 2018 to November 2023.
+This study asks how many principal components summarize 10 monthly US macroeconomic indicators and the prices of the 11 Select Sector SPDR ETFs, and what those components represent. It also regresses the daily S&P 500 log return on the components of the sector returns, from June 2018 to November 2023.
 
 ## Findings
 
-Two components summarize each dataset, explaining 78.26% of the macroeconomic variance and 93.62% of the sector price variance. The macroeconomic components describe inflation moving with consumption, and wages set against production. The sector components describe a market-wide factor and an energy factor. A regression on the first two sector components explains 97.14% of the variance of the same-day S&P 500 return and beats the one-component regression in the testing sample.
+Two components summarize each dataset, explaining 78.26% of the macroeconomic variance and 93.62% of the sector price variance. They describe inflation moving with consumption, wage growth set against production, a market-wide factor and an energy factor. Two components of the sector returns explain 97.14% of the in-sample S&P 500 return variance and beat one component in the testing sample.
 
 ## Layout
 
@@ -29,4 +29,4 @@ install.packages("pls")
 Rscript src/run.R
 ```
 
-This prints every number quoted in the report and writes the nine figure files it uses to `latex/figures/`, which is created on the first run and is not tracked.
+This prints every number quoted in the report and draws its nine figures.
